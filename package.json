@@ -1,0 +1,34 @@
+{
+  "name": "chapter_7_topic_1_aut_jwt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fadhilsurya/chapter_7_topic_1_aut_jwt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fadhilsurya/chapter_7_topic_1_aut_jwt/issues"
+  },
+  "homepage": "https://github.com/fadhilsurya/chapter_7_topic_1_aut_jwt#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "pg": "^8.9.0",
+    "sequelize": "^6.29.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
