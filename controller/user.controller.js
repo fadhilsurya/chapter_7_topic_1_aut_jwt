@@ -34,7 +34,11 @@ async function login(req, res) {
         const accessToken = jwt.sign({
             username: userCheck.username,
             id: userCheck.id
-        }, process.env.SECRET)
+        },
+            process.env.SECRET,
+            {
+                expiresIn: 60 * 60
+            })
 
         resp.data = {
             token: accessToken,
@@ -94,25 +98,3 @@ module.exports = {
     login,
     whoami
 }
-// function loginPage(req, res) {
-//     let message = ''
-
-//     if (req.session) {
-//         if (req.session.message) {
-//             message = req.session.message[0]
-
-//             req.session.message = []
-//         }
-//     }
-//     res.json({
-//         message
-//     }).status(200)
-// }
-
-// const login = passport.authenticate('local', {
-//     successRedirect: '/homepage',
-//     failureRedirect: '/register',
-//     failureMessage: true,
-//     session: false
-// })
-
