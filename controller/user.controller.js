@@ -34,11 +34,11 @@ async function login(req, res) {
         const accessToken = jwt.sign({
             username: userCheck.username,
             id: userCheck.id
-        }, process.env.RAHASIA)
+        }, process.env.SECRET)
 
         resp.data = {
             token: accessToken,
-            user: userCheck
+            user_id: userCheck.id
         }
         resp.message = 'success'
         resp.status = 200
@@ -76,12 +76,16 @@ function register(req, res, next) {
         })
 }
 
-function whoami(req, res) {
-    const dataUser = User.findByPk({
-        id: req.user.id
+async function whoami(req, res) {
+    const dataUser = await User.findOne({
+        where: {
+            id: req.user.id
+        }
     })
 
-    res.json(dataUser).status(200)
+    res.json({
+        user: dataUser
+    }).status(200)
 }
 
 
