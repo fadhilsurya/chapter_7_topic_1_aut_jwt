@@ -1,6 +1,7 @@
 const helper = require('../helper/common.helper')
 const { User } = require('../models/index')
 const resp = require('../helper/response.helper')
+const jwt = require('jsonwebtoken')
 
 async function login(req, res) {
 
@@ -29,7 +30,16 @@ async function login(req, res) {
     }
 
     if (checkPass) {
-        resp.data = userCheck
+
+        const accessToken = jwt.sign({
+            username: userCheck.username,
+            id: userCheck.id
+        }, process.env.RAHASIA)
+
+        resp.data = {
+            token: accessToken,
+            user: userCheck
+        }
         resp.message = 'success'
         resp.status = 200
         res.json(resp)
@@ -66,15 +76,20 @@ function register(req, res, next) {
         })
 }
 
+function whoami(req, res) {
+    const dataUser = User.findByPk({
+        id: req.user.id
+    })
 
-module.exports = {
-    register,
-    login
+    res.json(dataUser).status(200)
 }
 
 
-
-
+module.exports = {
+    register,
+    login,
+    whoami
+}
 // function loginPage(req, res) {
 //     let message = ''
 
